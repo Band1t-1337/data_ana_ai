@@ -14,9 +14,10 @@ from io import BytesIO
 import pandas as pd
 import os
 from dotenv import load_dotenv
-load_dotenv()
+
 
 def app():
+    load_dotenv()
     put_markdown("## 数据分析助手 ##")
     put_text("目前正处于开发测试阶段，支持excel文件分析")
     xlfile = file_upload(
@@ -34,7 +35,7 @@ def app():
                        base_url = "https://api.deepseek.com/v1",
                        api_key = os.getenv("DS_API_KEY")
     )
-    if ~config.api_key:
+    if not config.api_key:
         raise ValueError("api-key 配置错误")
     prompt = input("请输入你的指令:如请帮我找出其中最大的数字")
 
